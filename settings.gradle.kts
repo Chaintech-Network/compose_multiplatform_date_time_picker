@@ -1,4 +1,7 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = "DateTimePicker"
+include(":composeApp")
+include(":kmp-date-time-picker")
+
 pluginManagement {
     repositories {
         google()
@@ -13,7 +16,3 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = "DateTimePicker"
-include(":androidApp")
-include(":shared")
