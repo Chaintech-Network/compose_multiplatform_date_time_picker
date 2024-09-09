@@ -275,3 +275,8 @@ onTimeChangeListener: (snappedDate: LocalTime) -> Unit = {},
 * `onDoneClick`: Callback triggered when the "Done" button is clicked, passing the selected time.
 * `onTimeChangeListener`: Callback triggered when the time is changed, passing the selected time.
 
+- For Demo [Checkout This Class](https://github.com/Chaintech-Network/compose_multiplatform_date_time_picker/blob/main/composeApp/src/commonMain/kotlin/network/chaintech/kmpdatetimepickerdemo/App.kt)
+
+- [Medium Article](https://medium.com/mobile-innovation-network/easy-wheeldatetimepicker-compose-multiplatform-kmp-345b933c33b4) for detailed explaination.
+
+- Connect us on [LinkedIn](https://www.linkedin.com/showcase/mobile-innovation-network) 
