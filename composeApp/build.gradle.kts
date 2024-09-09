@@ -7,14 +7,15 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.application)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "${JavaVersion.VERSION_1_8}"
-                freeCompilerArgs += "-Xjdk-release=${JavaVersion.VERSION_1_8}"
+                jvmTarget = "${JavaVersion.VERSION_17}"
+                freeCompilerArgs += "-Xjdk-release=${JavaVersion.VERSION_17}"
             }
         }
         //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
@@ -60,7 +61,7 @@ kotlin {
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.transitions)
             implementation(libs.voyager.screenmodel)
-            implementation(project(":kmp-date-time-picker"))
+            implementation(libs.kmp.date.time.picker)
         }
 
         commonTest.dependencies {
@@ -84,7 +85,7 @@ kotlin {
 }
 
 android {
-    namespace = "network.chaintech.kmpdatetimepicker"
+    namespace = "network.chaintech.kmpdatetimepickerdemo"
     compileSdk = 34
 
     defaultConfig {
@@ -113,8 +114,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true

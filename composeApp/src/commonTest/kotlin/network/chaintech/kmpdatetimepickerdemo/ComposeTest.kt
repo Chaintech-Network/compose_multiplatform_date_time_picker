@@ -1,4 +1,4 @@
-package network.chaintech.kmpdatetimepicker
+package network.chaintech.kmpdatetimepickerdemo
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button

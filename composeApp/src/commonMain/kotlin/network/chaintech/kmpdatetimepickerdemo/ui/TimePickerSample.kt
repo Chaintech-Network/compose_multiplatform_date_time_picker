@@ -1,4 +1,4 @@
-package network.chaintech.kmpdatetimepicker.ui
+package network.chaintech.kmpdatetimepickerdemo.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

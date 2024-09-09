@@ -1,4 +1,4 @@
-package network.chaintech.kmpdatetimepicker
+package network.chaintech.kmpdatetimepickerdemo
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import datetimepicker.composeapp.generated.resources.*
-import network.chaintech.kmpdatetimepicker.theme.AppTheme
-import network.chaintech.kmpdatetimepicker.theme.LocalThemeIsDark
-import network.chaintech.kmpdatetimepicker.ui.DatePickerListScreen
+import network.chaintech.kmpdatetimepickerdemo.theme.AppTheme
+import network.chaintech.kmpdatetimepickerdemo.theme.LocalThemeIsDark
+import network.chaintech.kmpdatetimepickerdemo.ui.DatePickerListScreen
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource

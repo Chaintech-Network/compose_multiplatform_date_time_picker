@@ -1,4 +1,4 @@
-package network.chaintech.kmpdatetimepicker.theme
+package network.chaintech.kmpdatetimepickerdemo.theme
 
 import androidx.compose.ui.graphics.Color
 
