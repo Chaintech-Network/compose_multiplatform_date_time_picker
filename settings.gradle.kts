@@ -1,5 +1,6 @@
 rootProject.name = "DateTimePicker"
 include(":composeApp")
+include(":kmp-date-time-picker")
 
 pluginManagement {
     repositories {

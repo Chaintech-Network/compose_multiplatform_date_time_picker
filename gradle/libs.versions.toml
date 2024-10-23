@@ -1,11 +1,11 @@
 [versions]
 
-kmpDateTimePicker = "1.0.5"
-kotlin = "2.0.20"
-compose = "1.7.0-beta01"
+kmpDateTimePicker = "1.0.6"
+kotlin = "2.0.21"
+compose = "1.7.0"
 agp = "8.3.2"
-androidx-activityCompose = "1.9.2"
-androidx-uiTest = "1.7.0"
+androidx-activityCompose = "1.9.3"
+androidx-uiTest = "1.7.4"
 voyagerVersion = "1.0.0"
 
 [libraries]

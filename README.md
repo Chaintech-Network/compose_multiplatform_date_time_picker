@@ -1,3 +1,12 @@
+[![Maven Central](https://img.shields.io/maven-central/v/network.chaintech/kmp-date-time-picker.svg)](https://central.sonatype.com/artifact/network.chaintech/kmp-date-time-picker)
+[![Kotlin](https://img.shields.io/badge/kotlin-v2.0.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-v1.7.0-blue)](https://github.com/JetBrains/compose-multiplatform)
+[![License](https://img.shields.io/github/license/Chaintech-Network/CMPCharts)](http://www.apache.org/licenses/LICENSE-2.0)
+
+![badge-android](http://img.shields.io/badge/platform-android-3DDC84.svg?style=flat)
+![badge-ios](http://img.shields.io/badge/platform-ios-FF375F.svg?style=flat)
+![badge-desktop](http://img.shields.io/badge/platform-desktop-FF9500.svg?style=flat)
+
 # Easy Date Picker
 
 Easy Date Picker is a Kotlin Multiplatform library for selecting date and time in your Android or iOS App. It offers a customizable UI to use in your multiplatform projects.
@@ -10,7 +19,7 @@ Add the dependency to your `build.gradle.kts` file:
 
 ```kotlin
 commonMain.dependencies {
-    implementation("network.chaintech:kmp-date-time-picker:1.0.5")
+    implementation("network.chaintech:kmp-date-time-picker:1.0.6")
 }
 ```
 
@@ -276,7 +285,27 @@ onTimeChangeListener: (snappedDate: LocalTime) -> Unit = {},
 * `onTimeChangeListener`: Callback triggered when the time is changed, passing the selected time.
 
 - For Demo [Checkout This Class](https://github.com/Chaintech-Network/compose_multiplatform_date_time_picker/blob/main/composeApp/src/commonMain/kotlin/network/chaintech/kmpdatetimepickerdemo/App.kt)
-
 - [Medium Article](https://medium.com/mobile-innovation-network/easy-wheeldatetimepicker-compose-multiplatform-kmp-345b933c33b4) for detailed explaination.
+<br><br>
 
-- Connect us on [LinkedIn](https://www.linkedin.com/showcase/mobile-innovation-network) 
+## 🌐 Stay Connected with Us
+Stay connected and keep up with our latest innovations! 💼 Let's innovate together!<br><br>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/showcase/mobile-innovation-network)
+[![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/mobile-innovation-network)   
+<br>
+
+## 📄 License
+```
+Copyright 2023 Mobile Innovation Network 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
