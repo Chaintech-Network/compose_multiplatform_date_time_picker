@@ -1,4 +1,4 @@
-package network.chaintech.kmpdatetimepickerdemo.ui
+package network.chaintech.kmpdatetimepickerdemo.ui.pickers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -38,6 +36,7 @@ import network.chaintech.kmp_date_time_picker.utils.DateTimePickerView
 import network.chaintech.kmp_date_time_picker.utils.TimeFormat
 import network.chaintech.kmp_date_time_picker.utils.WheelPickerDefaults
 import network.chaintech.kmp_date_time_picker.utils.timeToString
+import network.chaintech.kmpdatetimepickerdemo.ui.components.CommonButton
 
 @Composable
 fun WheelTimePickerBottomSheet() {
@@ -91,26 +90,14 @@ fun WheelTimePickerBottomSheet() {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = Color(242,242,242)
     ) {
         Column(
             modifier = Modifier.fillMaxSize().height(200.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(
-                onClick = {
-                    showTimePicker = true
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)),
-            ) {
-                Text(
-                    text = "Show Time Picker",
-                    modifier = Modifier.background(Color.Transparent)
-                        .padding(horizontal = 12.dp, vertical = 12.dp),
-                    fontSize = 16.sp
-                )
-            }
+            CommonButton(buttonText = "Show Time Picker", onClick = {showTimePicker = true})
             Text(
                 text = selectedTime,
                 style = MaterialTheme.typography.titleMedium,
@@ -164,26 +151,14 @@ fun WheelTimePickerDialog() {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = Color(242,242,242)
     ) {
         Column(
             modifier = Modifier.fillMaxSize().height(200.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(
-                onClick = {
-                    showTimePicker = true
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)),
-            ) {
-                Text(
-                    text = "Show Time Picker",
-                    modifier = Modifier.background(Color.Transparent)
-                        .padding(horizontal = 12.dp, vertical = 12.dp),
-                    fontSize = 16.sp
-                )
-            }
+            CommonButton(buttonText = "Show Time Picker", onClick = {showTimePicker = true})
             Text(
                 text = selectedTime,
                 style = MaterialTheme.typography.titleMedium,
@@ -200,7 +175,7 @@ fun WheelTimePickerCustom() {
     var selectedDate by remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(Color.White),
+        modifier = Modifier.fillMaxSize().background(Color(242,242,242)),
         verticalArrangement = Arrangement.Center
     ) {
         HorizontalDivider(

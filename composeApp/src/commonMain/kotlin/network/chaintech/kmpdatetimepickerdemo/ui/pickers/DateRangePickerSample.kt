@@ -1,4 +1,4 @@
-package network.chaintech.kmpdatetimepickerdemo.ui
+package network.chaintech.kmpdatetimepickerdemo.ui.pickers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,10 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,24 +29,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import network.chaintech.kmp_date_time_picker.ui.datetimepicker.WheelDateTimePickerComponent
-import network.chaintech.kmp_date_time_picker.ui.datetimepicker.WheelDateTimePickerView
+import network.chaintech.kmp_date_time_picker.ui.date_range_picker.WheelDateRangePickerComponent.WheelDateRangePicker
+import network.chaintech.kmp_date_time_picker.ui.date_range_picker.WheelDateRangePickerView
 import network.chaintech.kmp_date_time_picker.utils.DateTimePickerView
-import network.chaintech.kmp_date_time_picker.utils.TimeFormat
 import network.chaintech.kmp_date_time_picker.utils.WheelPickerDefaults
-import network.chaintech.kmp_date_time_picker.utils.dateTimeToString
+import network.chaintech.kmpdatetimepickerdemo.ui.components.CommonButton
+
 
 @Composable
-fun WheelDateTimePickerBottomSheet() {
+fun WheelDateRangePickerDialog() {
+
     var showDatePicker by remember { mutableStateOf(false) }
-    var selectedDate by remember { mutableStateOf("") }
+    var selectedFromDate by remember { mutableStateOf("-/-/-") }
+    var selectedToDate by remember { mutableStateOf("-/-/-") }
+
 
     if (showDatePicker) {
-        WheelDateTimePickerView(
+        WheelDateRangePickerView(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 22.dp, bottom = 26.dp),
             showDatePicker = showDatePicker,
+            title = "Select Date Range",
+            doneLabel = "Done",
             titleStyle = TextStyle(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
@@ -60,13 +62,92 @@ fun WheelDateTimePickerBottomSheet() {
                 fontWeight = FontWeight(600),
                 color = Color(0xFF007AFF),
             ),
+            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
-            timeFormat = TimeFormat.AM_PM,
-            dateTextColor = Color(0xff007AFF),
             rowCount = 5,
-            height = 170.dp,
+            height = 180.dp,
+            dateTextStyle = TextStyle(
+                fontWeight = FontWeight(600),
+            ),
+            dragHandle = {
+                HorizontalDivider(
+                    modifier = Modifier.padding(top = 8.dp).width(50.dp).clip(CircleShape),
+                    thickness = 4.dp,
+                    color = Color(0xFFE8E4E4)
+                )
+            },
+            shape = RoundedCornerShape(18.dp),
+            dateRangeBoxShape = RoundedCornerShape(8.dp),
+            dateTimePickerView = DateTimePickerView.DIALOG_VIEW,
+            onDoneClick = { fromDate, toDate ->
+                selectedToDate = toDate.toString()
+                selectedFromDate = fromDate.toString()
+                showDatePicker = false
+            },
+            onDismiss = {
+                showDatePicker = false
+            },
+        )
+    }
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color(242,242,242)
+    ) {
+        Column(
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CommonButton(buttonText = "Show Date Range Picker", onClick = {showDatePicker = true})
+            Text(
+                text = "$selectedFromDate to $selectedToDate",
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+
+}
+
+
+@Composable
+fun WheelDateRangePickerBottomSheet() {
+
+    var showDatePicker by remember { mutableStateOf(false) }
+    var selectedFromDate by remember { mutableStateOf("-/-/-") }
+    var selectedToDate by remember { mutableStateOf("-/-/-") }
+
+    if (showDatePicker) {
+        WheelDateRangePickerView(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 22.dp, bottom = 26.dp),
+            showDatePicker = showDatePicker,
+            title = "DUE DATE",
+            doneLabel = "Done",
+            titleStyle = TextStyle(
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF333333),
+            ),
+            doneLabelStyle = TextStyle(
+                fontSize = 16.sp,
+                fontWeight = FontWeight(600),
+                color = Color(0xFF007AFF),
+            ),
+            dateTextColor = Color(0xff007AFF),
+            selectorProperties = WheelPickerDefaults.selectorProperties(
+                borderColor = Color.LightGray,
+            ),
+            rowCount = 5,
+            height = 180.dp,
             dateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
@@ -78,20 +159,25 @@ fun WheelDateTimePickerBottomSheet() {
                 )
             },
             shape = RoundedCornerShape(topStart = 18.dp, topEnd = 18.dp),
-            onDoneClick = {
-                selectedDate = dateTimeToString(it, "yyyy-MM-dd hh:mm a")
-                showDatePicker = false
-            },
+            dateRangeBoxShape = RoundedCornerShape(8.dp),
             dateTimePickerView = DateTimePickerView.BOTTOM_SHEET_VIEW,
+            onDoneClick = { fromDate, toDate ->
+                selectedToDate = toDate.toString()
+                selectedFromDate = fromDate.toString()
+                showDatePicker = false
+            },
             onDismiss = {
                 showDatePicker = false
             },
         )
     }
 
+
+
+
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = Color(242,242,242)
     ) {
         Column(
             modifier = Modifier
@@ -100,21 +186,9 @@ fun WheelDateTimePickerBottomSheet() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(
-                onClick = {
-                    showDatePicker = true
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)),
-            ) {
-                Text(
-                    text = "Show Date Time Picker",
-                    modifier = Modifier.background(Color.Transparent)
-                        .padding(horizontal = 12.dp, vertical = 12.dp),
-                    fontSize = 16.sp
-                )
-            }
+            CommonButton(buttonText = "Show Date Range Picker", onClick = {showDatePicker = true})
             Text(
-                text = selectedDate,
+                text = "$selectedFromDate to $selectedToDate",
                 modifier = Modifier
                     .padding(top = 10.dp)
                     .fillMaxWidth(),
@@ -122,89 +196,18 @@ fun WheelDateTimePickerBottomSheet() {
             )
         }
     }
+
 }
 
-@Composable
-fun WheelDateTimePickerDialog() {
-    var showDatePicker by remember { mutableStateOf(false) }
-    var selectedDate by remember { mutableStateOf("") }
-
-    if (showDatePicker) {
-        WheelDateTimePickerView(
-            modifier = Modifier.padding(top = 18.dp, bottom = 10.dp).fillMaxWidth(),
-            showDatePicker = showDatePicker,
-            titleStyle = TextStyle(
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF333333),
-            ),
-            doneLabelStyle = TextStyle(
-                fontSize = 16.sp,
-                fontWeight = FontWeight(600),
-                color = Color(0xFF007AFF),
-            ),
-            selectorProperties = WheelPickerDefaults.selectorProperties(
-                borderColor = Color.LightGray,
-            ),
-            timeFormat = TimeFormat.AM_PM,
-            dateTextColor = Color(0xff007AFF),
-            rowCount = 5,
-            height = 170.dp,
-            dateTextStyle = TextStyle(
-                fontWeight = FontWeight(600),
-            ),
-            onDoneClick = {
-                selectedDate = dateTimeToString(it, "yyyy-MM-dd hh:mm a")
-                showDatePicker = false
-            },
-            dateTimePickerView = DateTimePickerView.DIALOG_VIEW,
-            onDismiss = {
-                showDatePicker = false
-            },
-        )
-    }
-
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Column(
-            modifier = Modifier
-                .height(200.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Button(
-                onClick = {
-                    showDatePicker = true
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)),
-            ) {
-                Text(
-                    text = "Show Date Time Picker",
-                    modifier = Modifier.background(Color.Transparent)
-                        .padding(horizontal = 12.dp, vertical = 12.dp),
-                    fontSize = 16.sp
-                )
-            }
-            Text(
-                text = selectedDate,
-                modifier = Modifier
-                    .padding(top = 10.dp)
-                    .fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
-        }
-    }
-}
 
 @Composable
-fun WheelDateTimePickerCustom() {
-    var date by remember { mutableStateOf("--") }
+fun WheelDateRangePickerCustom() {
+
+    var fromDate by remember { mutableStateOf("-/-/-") }
+    var toDate by remember { mutableStateOf("-/-/-") }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(Color.White),
+        modifier = Modifier.fillMaxSize().background(Color(242,242,242)),
         verticalArrangement = Arrangement.Center
     ) {
         HorizontalDivider(
@@ -212,7 +215,7 @@ fun WheelDateTimePickerCustom() {
             thickness = (0.5).dp,
             color = Color.LightGray
         )
-        WheelDateTimePickerComponent.WheelDateTimePicker(
+        WheelDateRangePicker(
             modifier = Modifier
                 .padding(top = 10.dp)
                 .fillMaxWidth(),
@@ -220,14 +223,17 @@ fun WheelDateTimePickerCustom() {
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
-            timeFormat = TimeFormat.AM_PM,
             rowCount = 5,
             height = 180.dp,
             dateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
-            onDateChangeListener = {
-                date = dateTimeToString(it, "yyyy-MM-dd hh:mm a")
+            dateTextFormat = "yyyy-MM-dd",
+            onToDateChangeListener = {
+                toDate = it.toString()
+            },
+            onFromDateChangeListener = {
+                fromDate = it.toString()
             },
             hideHeader = true,
         )
@@ -240,12 +246,12 @@ fun WheelDateTimePickerCustom() {
             modifier = Modifier.padding(top = 12.dp, start = 22.dp, end = 22.dp).fillMaxWidth()
         ) {
             Text(
-                text = "Selected Date & Time :",
+                text = "Date Range :",
                 modifier = Modifier,
             )
             Spacer(modifier = Modifier.weight(1f).height(1.dp))
             Text(
-                text = date,
+                text = "$fromDate to $toDate",
                 modifier = Modifier,
             )
         }
@@ -255,4 +261,5 @@ fun WheelDateTimePickerCustom() {
             color = Color.LightGray
         )
     }
+
 }

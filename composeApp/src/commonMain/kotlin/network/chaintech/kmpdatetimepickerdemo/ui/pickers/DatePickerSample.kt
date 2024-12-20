@@ -1,4 +1,4 @@
-package network.chaintech.kmpdatetimepickerdemo.ui
+package network.chaintech.kmpdatetimepickerdemo.ui.pickers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,13 +10,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,6 +33,7 @@ import network.chaintech.kmp_date_time_picker.ui.datepicker.WheelDatePickerCompo
 import network.chaintech.kmp_date_time_picker.ui.datepicker.WheelDatePickerView
 import network.chaintech.kmp_date_time_picker.utils.DateTimePickerView
 import network.chaintech.kmp_date_time_picker.utils.WheelPickerDefaults
+import network.chaintech.kmpdatetimepickerdemo.ui.components.CommonButton
 
 @Composable
 fun WheelDatePickerBottomSheet() {
@@ -91,7 +88,7 @@ fun WheelDatePickerBottomSheet() {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = Color(242,242,242)
     ) {
         Column(
             modifier = Modifier
@@ -100,19 +97,7 @@ fun WheelDatePickerBottomSheet() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(
-                onClick = {
-                    showDatePicker = true
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)),
-            ) {
-                Text(
-                    text = "Show Date Picker",
-                    modifier = Modifier.background(Color.Transparent)
-                        .padding(horizontal = 12.dp, vertical = 12.dp),
-                    fontSize = 16.sp
-                )
-            }
+            CommonButton(buttonText = "Show Date Picker", onClick = {showDatePicker = true})
             Text(
                 text = selectedDate,
                 modifier = Modifier
@@ -169,7 +154,7 @@ fun WheelDatePickerDialog() {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color =Color(242,242,242)
     ) {
         Column(
             modifier = Modifier
@@ -178,19 +163,7 @@ fun WheelDatePickerDialog() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(
-                onClick = {
-                    showDatePicker = true
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)),
-            ) {
-                Text(
-                    text = "Show Date Picker",
-                    modifier = Modifier.background(Color.Transparent)
-                        .padding(horizontal = 12.dp, vertical = 12.dp),
-                    fontSize = 16.sp
-                )
-            }
+            CommonButton(buttonText = "Show Date Picker", onClick = {showDatePicker = true})
             Text(
                 text = selectedDate,
                 modifier = Modifier
@@ -207,7 +180,7 @@ fun WheelDatePickerCustom() {
     var date by remember { mutableStateOf("--") }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(Color.White),
+        modifier = Modifier.fillMaxSize().background(Color(242,242,242)),
         verticalArrangement = Arrangement.Center
     ) {
         HorizontalDivider(
