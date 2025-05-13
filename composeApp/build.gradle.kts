@@ -86,11 +86,11 @@ kotlin {
 
 android {
     namespace = "network.chaintech.kmpdatetimepickerdemo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
 
         applicationId = "network.chaintech.kmpdatetimepicker.androidApp"
         versionCode = 1

@@ -46,32 +46,39 @@ fun WheelDatePickerBottomSheet() {
                 .fillMaxWidth()
                 .padding(top = 22.dp, bottom = 26.dp),
             showDatePicker = showDatePicker,
-            title = "DUE DATE",
+            title = "Select Date",
             doneLabel = "Done",
             titleStyle = TextStyle(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF333333),
+                color = Color.White,
             ),
+            containerColor = Color.Black,
             doneLabelStyle = TextStyle(
                 fontSize = 16.sp,
                 fontWeight = FontWeight(600),
-                color = Color(0xFF007AFF),
+                color = Color.Yellow,
             ),
-            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
-                borderColor = Color.LightGray,
+                borderColor = Color.Black,
             ),
             rowCount = 5,
             height = 180.dp,
-            dateTextStyle = TextStyle(
+            defaultDateTextStyle = TextStyle(
+                fontWeight = FontWeight(400),
+                color = Color.LightGray,
+                fontSize = 20.sp
+            ),
+            selectedDateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
+                color = Color.White,
+                fontSize = 22.sp
             ),
             dragHandle = {
                 HorizontalDivider(
                     modifier = Modifier.padding(top = 8.dp).width(50.dp).clip(CircleShape),
                     thickness = 4.dp,
-                    color = Color(0xFFE8E4E4)
+                    color = Color.LightGray
                 )
             },
             shape = RoundedCornerShape(topStart = 18.dp, topEnd = 18.dp),
@@ -132,15 +139,11 @@ fun WheelDatePickerDialog() {
                 fontWeight = FontWeight(600),
                 color = Color(0xFF007AFF),
             ),
-            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 180.dp,
-            dateTextStyle = TextStyle(
-                fontWeight = FontWeight(600),
-            ),
             dateTimePickerView = DateTimePickerView.DIALOG_VIEW,
             onDoneClick = {
                 selectedDate = it.toString()
@@ -192,15 +195,11 @@ fun WheelDatePickerCustom() {
             modifier = Modifier
                 .padding(top = 10.dp)
                 .fillMaxWidth(),
-            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 180.dp,
-            dateTextStyle = TextStyle(
-                fontWeight = FontWeight(600),
-            ),
             onDateChangeListener = {
                 date = it.toString()
             },

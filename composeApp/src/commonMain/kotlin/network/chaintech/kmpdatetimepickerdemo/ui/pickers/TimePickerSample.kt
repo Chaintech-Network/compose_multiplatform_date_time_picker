@@ -59,14 +59,13 @@ fun WheelTimePickerBottomSheet() {
                 fontWeight = FontWeight(600),
                 color = Color(0xFF007AFF),
             ),
-            textColor = Color(0xff007AFF),
             timeFormat = TimeFormat.AM_PM,
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 170.dp,
-            textStyle = TextStyle(
+            selectedTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             dateTimePickerView = DateTimePickerView.BOTTOM_SHEET_VIEW,
@@ -128,14 +127,13 @@ fun WheelTimePickerDialog() {
                 fontWeight = FontWeight(600),
                 color = Color(0xFF007AFF),
             ),
-            textColor = Color(0xff007AFF),
             timeFormat = TimeFormat.AM_PM,
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 170.dp,
-            textStyle = TextStyle(
+            selectedTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             dateTimePickerView = DateTimePickerView.DIALOG_VIEW,
@@ -185,16 +183,12 @@ fun WheelTimePickerCustom() {
         )
         WheelTimePickerComponent.WheelTimePicker(
             modifier = Modifier.padding(top = 18.dp, bottom = 10.dp).fillMaxWidth(),
-            textColor = Color(0xff007AFF),
             timeFormat = TimeFormat.AM_PM,
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 170.dp,
-            textStyle = TextStyle(
-                fontWeight = FontWeight(600),
-            ),
             onTimeChangeListener = {
                 selectedDate = timeToString(it, "hh:mm a")
             },

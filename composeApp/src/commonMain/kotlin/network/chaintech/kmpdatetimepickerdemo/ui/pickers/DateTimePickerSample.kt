@@ -62,10 +62,9 @@ fun WheelDateTimePickerBottomSheet() {
                 borderColor = Color.LightGray,
             ),
             timeFormat = TimeFormat.AM_PM,
-            dateTextColor = Color(0xff007AFF),
             rowCount = 5,
             height = 170.dp,
-            dateTextStyle = TextStyle(
+            selectedDateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             dragHandle = {
@@ -133,10 +132,9 @@ fun WheelDateTimePickerDialog() {
                 borderColor = Color.LightGray,
             ),
             timeFormat = TimeFormat.AM_PM,
-            dateTextColor = Color(0xff007AFF),
             rowCount = 5,
             height = 170.dp,
-            dateTextStyle = TextStyle(
+            selectedDateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             onDoneClick = {
@@ -190,14 +188,13 @@ fun WheelDateTimePickerCustom() {
             modifier = Modifier
                 .padding(top = 10.dp)
                 .fillMaxWidth(),
-            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             timeFormat = TimeFormat.AM_PM,
             rowCount = 5,
             height = 180.dp,
-            dateTextStyle = TextStyle(
+            selectedTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             onDateChangeListener = {

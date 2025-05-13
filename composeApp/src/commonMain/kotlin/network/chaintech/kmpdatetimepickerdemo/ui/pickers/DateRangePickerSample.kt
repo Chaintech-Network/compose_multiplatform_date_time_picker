@@ -62,13 +62,12 @@ fun WheelDateRangePickerDialog() {
                 fontWeight = FontWeight(600),
                 color = Color(0xFF007AFF),
             ),
-            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 180.dp,
-            dateTextStyle = TextStyle(
+            defaultDateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             dragHandle = {
@@ -142,13 +141,12 @@ fun WheelDateRangePickerBottomSheet() {
                 fontWeight = FontWeight(600),
                 color = Color(0xFF007AFF),
             ),
-            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 180.dp,
-            dateTextStyle = TextStyle(
+            defaultDateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             dragHandle = {
@@ -219,13 +217,12 @@ fun WheelDateRangePickerCustom() {
             modifier = Modifier
                 .padding(top = 10.dp)
                 .fillMaxWidth(),
-            dateTextColor = Color(0xff007AFF),
             selectorProperties = WheelPickerDefaults.selectorProperties(
                 borderColor = Color.LightGray,
             ),
             rowCount = 5,
             height = 180.dp,
-            dateTextStyle = TextStyle(
+            defaultDateTextStyle = TextStyle(
                 fontWeight = FontWeight(600),
             ),
             dateTextFormat = "yyyy-MM-dd",

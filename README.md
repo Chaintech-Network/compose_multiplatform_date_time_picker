@@ -19,7 +19,7 @@ Add the dependency to your `build.gradle.kts` file:
 
 ```kotlin
 commonMain.dependencies {
-    implementation("network.chaintech:kmp-date-time-picker:1.0.7")
+    implementation("network.chaintech:kmp-date-time-picker:1.0.8")
 }
 ```
 
@@ -54,9 +54,16 @@ WheelDatePickerView(
     rowCount: Int = 3,
     showShortMonths: Boolean = false,
     showMonthAsNumber: Boolean = false,
-    dateTextStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    dateTextColor: Color = LocalContentColor.current,
+    selectedDateTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 20.sp
+    ),
+    defaultDateTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 18.sp
+    ),
     hideHeader: Boolean = false,
+    customMonthNames: List<String>? = null,
     containerColor: Color = Color.White,
     shape: Shape = RoundedCornerShape(10.dp),
     dateTimePickerView: DateTimePickerView = DateTimePickerView.BOTTOM_SHEET_VIEW,
@@ -85,9 +92,16 @@ WheelDatePicker(
     rowCount: Int = 3,
     showShortMonths: Boolean = false,
     showMonthAsNumber: Boolean = false,
-    dateTextStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    dateTextColor: Color = LocalContentColor.current,
+    selectedDateTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 18.sp
+    ),
+    defaultDateTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 16.sp
+    ),
     hideHeader: Boolean = false,
+    customMonthNames: List<String>? = null,
     selectorProperties: SelectorProperties = WheelPickerDefaults.selectorProperties(),
     onDoneClick: (snappedDate: LocalDate) -> Unit = {},
     onDateChangeListener: (snappedDate: LocalDate) -> Unit = {}
@@ -106,9 +120,11 @@ WheelDatePicker(
 * `height`: height of the date picker component.
 * `rowCount`: Number of rows displayed in the picker and it's depending on height also.
 * `showShortMonths`: show short month name.
-* `dateTextStyle`: Text style for the date display.
-* `dateTextColor`: Text color for the date display.
+* `showMonthAsNumber`: If true, displays months as numbers (e.g., "01" for January).
+* `selectedDateTextStyle`: Text style used for the currently selected date.
+* `defaultDateTextStyle`: Text style used for unselected date items in the picker.
 * `hideHeader`: Hide header of picker.
+* `customMonthNames`: Optional custom list of month names (e.g., localized or alternative month names).
 * `selectorProperties`: Properties defining the interaction with the date picker.
 * `onDoneClick`: Callback triggered when the "Done" button is clicked, passing the selected date.
 * `onDateChangeListener`: Callback triggered when the Date is changed, passing the selected date.
@@ -149,8 +165,15 @@ fun WheelDateRangePickerView(
     rowCount: Int = 3,
     showShortMonths: Boolean = false,
     showMonthAsNumber: Boolean = false,
-    dateTextStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    dateTextColor: Color = LocalContentColor.current,
+    customMonthNames: List<String>? = null,
+    selectedDateTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 20.sp
+    ),
+    defaultDateTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 18.sp
+    ),
     hideHeader: Boolean = false,
     containerColor: Color = Color.White,
     shape: Shape = RoundedCornerShape(10.dp),
@@ -158,16 +181,17 @@ fun WheelDateRangePickerView(
     selectorProperties: SelectorProperties = WheelPickerDefaults.selectorProperties(),
     dragHandle: @Composable (() -> Unit)? = { BottomSheetDefaults.DragHandle() },
     dateRangeBoxColor: Color = Color.White,
-    dateRangeSelectedBoxColor: Color = Color.LightGray,
+    dateRangeSelectedBoxColor: Color = Color(233, 242, 254, 255),
     dateRangeBoxBorderColor: Color = Color.LightGray,
-    dateRangeSelectedBoxBorderColor: Color = Color.DarkGray,
+    dateRangeSelectedBoxBorderColor: Color = Color(153, 189, 251, 255),
+    dateRangeSelectedTextColor: Color = Color(82,136,249,255),
     dateRangeBoxShape: Shape = RoundedCornerShape(8.dp),
-    dateRangeTextStyle: TextStyle = LocalTextStyle.current,
+    dateRangeTextStyle: TextStyle = TextStyle(color = Color(51,51,51), fontWeight = FontWeight.W600),
     dateTextFormat:String = "yyyy-MM-dd",
     onDoneClick: (fromDate: LocalDate, toDate: LocalDate) -> Unit = { _, _ -> },
     onFromDateChangeListener: (snappedDate: LocalDate) -> Unit = {},
     onToDateChangeListener: (snappedDate: LocalDate) -> Unit = {},
-    onDismiss: () -> Unit = {}
+    onDismiss: () -> Unit = {},
 )
 ```
 - If you want to use custom wrapper around `WheelDateRangePicker` use below code
@@ -191,21 +215,32 @@ fun WheelDateRangePicker(
     rowCount: Int = 3,
     showShortMonths: Boolean = true,
     showMonthAsNumber: Boolean = false,
-    dateTextStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    dateTextColor: Color = LocalContentColor.current,
+    selectedDateTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 20.sp
+    ),
+    defaultDateTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 18.sp
+    ),
     hideHeader: Boolean = false,
+    customMonthNames: List<String>? = null,
     selectorProperties: SelectorProperties = WheelPickerDefaults.selectorProperties(),
     dateRangeBoxColor: Color = Color.White,
-    dateRangeSelectedBoxColor: Color = Color.LightGray,
+    dateRangeSelectedBoxColor: Color = Color(233, 242, 254, 255),
     dateRangeBoxBorderColor: Color = Color.LightGray,
-    dateRangeSelectedBoxBorderColor: Color = Color.DarkGray,
+    dateRangeSelectedBoxBorderColor: Color = Color(153, 189, 251, 255),
+    dateRangeSelectedTextColor: Color = Color(82, 136, 249, 255),
     dateRangeBoxShape: Shape = RoundedCornerShape(8.dp),
-    dateRangeTextStyle: TextStyle = LocalTextStyle.current,
+    dateRangeTextStyle: TextStyle = TextStyle(
+        color = Color(51, 51, 51),
+        fontWeight = FontWeight.W600
+    ),
     dateTextFormat:String = "yyyy-MM-dd",
     onDoneClick: (fromDate: LocalDate, toDate: LocalDate) -> Unit = { _, _ -> },
     onFromDateChangeListener: (fromDate: LocalDate) -> Unit = {},
     onToDateChangeListener: (fromDate: LocalDate) -> Unit = {}
- )
+)
 ```
 * `modifier`: Modifies the layout of the date picker.
 * `title`: Title displayed above the date picker.
@@ -224,9 +259,10 @@ fun WheelDateRangePicker(
 * `rowCount`: Number of rows displayed in the picker and it's depending on height also.
 * `showShortMonths`: show short month name.
 * `showMonthAsNumber`: show month number
-* `dateTextStyle`: Text style for the date display.
-* `dateTextColor`: Text color for the date display.
+* `selectedDateTextStyle`: Text style used for the currently selected date.
+* `defaultDateTextStyle`: Text style used for unselected date items in the picker.
 * `hideHeader`: Hide header of picker.
+* `customMonthNames`: Optional custom list of month names (e.g., localized or alternative month names).
 * `selectorProperties`: Properties defining the interaction with the date picker.
 * `dateRangeBoxColor`:  Background color of the date boxes when not selected
 * `dateRangeSelectedBoxColor`:  Background color of the date boxes when selected
@@ -256,7 +292,7 @@ A composable for selecting date & time using a wheel picker.
 </div>
 
 ```kotlin
-WheelDateTimePickerView(
+fun WheelDateTimePickerView(
     modifier: Modifier = Modifier,
     showDatePicker: Boolean = false,
     title: String = "DATE & TIME PICKER",
@@ -270,10 +306,17 @@ WheelDateTimePickerView(
     yearsRange: IntRange? = IntRange(1922, 2122),
     height: Dp,
     rowCount: Int = 3,
-    dateTextStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    dateTextColor: Color = LocalContentColor.current,
+    selectedDateTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 18.sp
+    ),
+    defaultDateTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 16.sp
+    ),
     hideHeader: Boolean = false,
     showMonthAsNumber: Boolean = false,
+    customMonthNames: List<String>? = null,
     containerColor: Color = Color.White,
     shape: Shape = RoundedCornerShape(10.dp),
     dateTimePickerView: DateTimePickerView = DateTimePickerView.BOTTOM_SHEET_VIEW,
@@ -281,14 +324,14 @@ WheelDateTimePickerView(
     selectorProperties: SelectorProperties = WheelPickerDefaults.selectorProperties(),
     onDoneClick: (snappedDate: LocalDateTime) -> Unit = {},
     onDateChangeListener: (snappedDate: LocalDateTime) -> Unit = {},
-    onDismiss: () -> Unit = {}
+    onDismiss: () -> Unit = {},
 )  
 ```
 
 - If you want to use custom wrapper around `WheelDateTimePicker` use below code.
 
 ```kotlin
-WheelDateTimePicker(
+fun WheelDateTimePicker(
     modifier: Modifier = Modifier,
     title: String = "DATE & TIME PICKER",
     doneLabel: String = "Done",
@@ -301,14 +344,22 @@ WheelDateTimePicker(
     timeFormat: TimeFormat = TimeFormat.HOUR_24,
     height: Dp = 128.dp,
     rowCount: Int = 3,
-    dateTextStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    dateTextColor: Color = LocalContentColor.current,
+    selectedTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 18.sp
+    ),
+    defaultTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 16.sp
+    ),
     hideHeader: Boolean = false,
     showMonthAsNumber: Boolean = false,
+    customMonthNames: List<String>? = null,
+    showShortMonths: Boolean = false,
     selectorProperties: SelectorProperties = WheelPickerDefaults.selectorProperties(),
     onDoneClick: (snappedDate: LocalDateTime) -> Unit = {},
-    onDateChangeListener: (snappedDate: LocalDateTime) -> Unit = {}
-) 
+    onDateChangeListener: (snappedDate: LocalDateTime) -> Unit = {},
+)
 ```
 
 * `modifier`: Modifies the layout of the datetime picker.
@@ -322,9 +373,12 @@ WheelDateTimePicker(
 * `timeFormat`: Format for displaying time (e.g., 24-hour format).
 * `height`: height of the datetime picker component.
 * `rowCount`: Number of rows displayed in the picker and it's depending on height also.
-* `dateTextStyle`: Text style for the datetime display.
-* `dateTextColor`: Text color for the datetime display.
+* `selectedDateTextStyle`: Text style used for the currently selected date.
+* `defaultDateTextStyle`: Text style used for unselected date items in the picker.
 * `hideHeader`: Hide header of picker.
+* `customMonthNames`: Optional custom list of month names (e.g., localized or alternative month names).
+* `showShortMonths`: show short month name.
+* `showMonthAsNumber`: show month number 
 * `selectorProperties`: Properties defining the interaction with the datetime picker.
 * `onDoneClick`: Callback triggered when the "Done" button is clicked, passing the selected datetime.
 * `onDateChangeListener`: Callback triggered when the Date is changed, passing the selected datetime.
@@ -344,7 +398,7 @@ A composable for selecting time using a wheel picker.
 </div>
 
 ```kotlin
-WheelTimePickerView(
+fun WheelTimePickerView(
     modifier: Modifier = Modifier,
     showTimePicker: Boolean = false,
     title: String = "TIME PICKER",
@@ -355,10 +409,17 @@ WheelTimePickerView(
     minTime: LocalTime = LocalTime.MIN(),
     maxTime: LocalTime = LocalTime.MAX(),
     timeFormat: TimeFormat = TimeFormat.HOUR_24,
+    showSeconds: Boolean = false,
     height: Dp,
     rowCount: Int = 3,
-    textStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    textColor: Color = LocalContentColor.current,
+    selectedTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 20.sp
+    ),
+    defaultTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 18.sp
+    ),
     hideHeader: Boolean = false,
     containerColor: Color = Color.White,
     shape: Shape = RoundedCornerShape(10.dp),
@@ -367,31 +428,38 @@ WheelTimePickerView(
     selectorProperties: SelectorProperties = WheelPickerDefaults.selectorProperties(),
     onDoneClick: (snappedDate: LocalTime) -> Unit = {},
     onTimeChangeListener: (snappedDate: LocalTime) -> Unit = {},
-    onDismiss: () -> Unit = {}
+    onDismiss: () -> Unit = {},
 )   
 ```
 
 - If you want to use custom wrapper around `WheelTimePicker` use below code.
 
 ```kotlin
-WheelTimePicker(
+fun WheelTimePicker(
     modifier: Modifier = Modifier,
     title: String = "TIME PICKER",
     doneLabel: String = "Done",
     titleStyle: TextStyle = LocalTextStyle.current,
     doneLabelStyle: TextStyle = LocalTextStyle.current,
+    showSeconds: Boolean = false,
     startTime: LocalTime = LocalTime.now(),
     minTime: LocalTime = LocalTime.MIN(),
     maxTime: LocalTime = LocalTime.MAX(),
     timeFormat: TimeFormat = TimeFormat.HOUR_24,
     height: Dp,
     rowCount: Int = 3,
-    textStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    textColor: Color = LocalContentColor.current,
+    selectedTextStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(
+        color = LocalContentColor.current,
+        fontSize = 20.sp
+    ),
+    defaultTextStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
+        color = Color.Black,
+        fontSize = 18.sp
+    ),
     hideHeader: Boolean = false,
     selectorProperties: SelectorProperties = WheelPickerDefaults.selectorProperties(),
     onDoneClick: (snappedDate: LocalTime) -> Unit = {},
-    onTimeChangeListener: (snappedDate: LocalTime) -> Unit = {}
+    onTimeChangeListener: (snappedDate: LocalTime) -> Unit = {},
 )  
 ```
 * `modifier`: Modifies the layout of the time picker.
@@ -399,14 +467,15 @@ WheelTimePicker(
 * `doneLabel`: Label for the "Done" button.
 * `titleStyle`: Style for the title text.
 * `doneLabelStyle`: Style for the "Done" label text.
+* `showSeconds`: If true, the time picker also includes seconds selection.
 * `startTime`: Initial time selected in the picker.
 * `minTime`: Minimum selectable time.
 * `maxTime`: Maximum selectable time.
 * `timeFormat`: Format for displaying time (e.g., 24-hour format).
 * `height`: height of the time picker component.
 * `rowCount`: Number of rows displayed in the picker and it's depending on height also.
-* `textStyle`: Text style for the time display.
-* `textColor`: Text color for the time display.
+* `selectedDateTextStyle`: Text style used for the currently selected date.
+* `defaultDateTextStyle`: Text style used for unselected date items in the picker.
 * `hideHeader`: Hide header of picker.
 * `selectorProperties`: Properties defining the interaction with the time picker.
 * `onDoneClick`: Callback triggered when the "Done" button is clicked, passing the selected time.
