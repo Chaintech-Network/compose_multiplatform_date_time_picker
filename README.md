@@ -6,6 +6,7 @@
 ![badge-android](http://img.shields.io/badge/platform-android-3DDC84.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/platform-ios-FF375F.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-FF9500.svg?style=flat)
+![badge-web](https://img.shields.io/badge/platform-web-33ceff.svg?style=flat)
 
 # Easy Date Picker
 

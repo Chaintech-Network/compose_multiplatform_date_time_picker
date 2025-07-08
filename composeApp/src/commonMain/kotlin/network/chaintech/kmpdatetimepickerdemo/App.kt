@@ -1,34 +1,42 @@
 package network.chaintech.kmpdatetimepickerdemo
 
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.transitions.SlideTransition
-import datetimepicker.composeapp.generated.resources.*
-import network.chaintech.kmpdatetimepickerdemo.theme.AppTheme
-import network.chaintech.kmpdatetimepickerdemo.theme.LocalThemeIsDark
-import network.chaintech.kmpdatetimepickerdemo.ui.DatePickerListScreen
-import org.jetbrains.compose.resources.Font
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
+import network.chaintech.kmpdatetimepickerdemo.ui.DateTimePickerNav
+
+val LocalSnackBarHostState =
+    compositionLocalOf<SnackbarHostState> { error("No SnackBarHostState provided") }
+
+@Composable
+fun CompositionProvider(content: @Composable (SnackbarHostState) -> Unit) {
+    val snackBarHostState = remember { SnackbarHostState() }
+
+    CompositionLocalProvider(
+        LocalSnackBarHostState provides snackBarHostState,
+    ) {
+        content(snackBarHostState)
+    }
+}
 
 @Composable
 internal fun App() {
-    MaterialTheme {
-        Navigator(
-            screen = DatePickerListScreen()
-        ) { navigator ->
-            Scaffold {
-                SlideTransition(navigator)
+    CompositionProvider { snackBarHostState ->
+        Scaffold(
+            snackbarHost = {
+                SnackbarHost(snackBarHostState, Modifier.padding(bottom = 30.dp))
+            }
+        ) {
+            MaterialTheme {
+                DateTimePickerNav()
             }
         }
     }
