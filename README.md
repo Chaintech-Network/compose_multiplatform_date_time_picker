@@ -12,7 +12,7 @@
 
 Easy Date Picker is a Kotlin Multiplatform library for selecting date and time in your Android, iOS and Desktop App. It offers a customizable UI to use in your multiplatform projects.
 
-![Hero-image 5 dark mode 1](https://github.com/user-attachments/assets/e5b9bfb5-f880-4f7a-949d-1d04096cdcdd)
+<img width="960" alt="CMP-DatePicker-Banner" src="/assets/CMP-DatePicker-Banner.jpg"><br><br>
 
 ## Installation
 
